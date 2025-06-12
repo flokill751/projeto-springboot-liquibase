@@ -1,0 +1,43 @@
+databaseChangeLog:
+- changeSet:
+    id: 1749684676768-1
+    author: flokill (generated)
+    changes:
+    - createSequence:
+        incrementBy: 1
+        sequenceName: seq_telefone
+        startValue: 1
+- changeSet:
+    id: 1749684676768-2
+    author: flokill (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: telefonePK
+            name: id
+            type: BIGINT
+        - column:
+            name: numero
+            type: VARCHAR(255)
+        - column:
+            name: person_id
+            type: BIGINT
+        tableName: telefone
+- changeSet:
+    id: 1749684676768-3
+    author: flokill (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: person_id
+        baseTableName: telefone
+        constraintName: FK_PERSON_TELL
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: person
+        validate: true
+

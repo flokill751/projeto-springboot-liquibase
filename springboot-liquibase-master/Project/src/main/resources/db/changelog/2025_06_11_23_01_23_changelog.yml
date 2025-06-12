@@ -1,0 +1,106 @@
+databaseChangeLog:
+- changeSet:
+    id: 1749682886284-1
+    author: flokill (generated)
+    changes:
+    - createSequence:
+        incrementBy: 1
+        sequenceName: seq_endereco
+        startValue: 1
+- changeSet:
+    id: 1749682886284-2
+    author: flokill (generated)
+    changes:
+    - createSequence:
+        incrementBy: 1
+        sequenceName: seq_person
+        startValue: 1
+- changeSet:
+    id: 1749682886284-3
+    author: flokill (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: enderecoPK
+            name: id
+            type: BIGINT
+        - column:
+            name: bairro
+            type: VARCHAR(255)
+        - column:
+            name: cep
+            type: BIGINT
+        - column:
+            name: cidade
+            type: VARCHAR(255)
+        - column:
+            name: complemento
+            type: VARCHAR(255)
+        - column:
+            name: logradouro
+            type: VARCHAR(255)
+        - column:
+            name: numero
+            type: VARCHAR(255)
+        - column:
+            name: uf
+            type: VARCHAR(255)
+        - column:
+            name: person_id
+            type: BIGINT
+        tableName: endereco
+- changeSet:
+    id: 1749682886284-4
+    author: flokill (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: personPK
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: email
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(100)
+        - column:
+            constraints:
+              nullable: false
+            name: phone
+            type: VARCHAR(15)
+        tableName: person
+- changeSet:
+    id: 1749682886284-5
+    author: flokill (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: email
+        constraintName: UC_PERSONEMAIL_COL
+        tableName: person
+- changeSet:
+    id: 1749682886284-6
+    author: flokill (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: person_id
+        baseTableName: endereco
+        constraintName: FK_PERSON_ID
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: person
+        validate: true
+
